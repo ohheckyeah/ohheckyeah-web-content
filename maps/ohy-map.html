@@ -38,7 +38,7 @@
       function initialize() {
         // config
         var mapMaxWidth = 200;
-        var styleArray = [{"featureType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]
+        var styleArray = [{"featureType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]},{"featureType": "poi","stylers": [ {"saturation": -100},{"lightness": 51},{"visibility": "simplified"}]}]; // http://snazzymaps.com/style/5/greyscale
 
         // CREATE MAP --------------------------------------------------
         var mapOptions = {
@@ -74,6 +74,73 @@
         ohyBoundsPolygon.setMap(map);
 
         // ADD MARKERS -------------------------------------------------
+        var coinSvg = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjJweCIgaGVpZ2h0PSIyMnB4IiB2aWV3Qm94PSIwIDAgMjIgMjIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIyIDIyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxjaXJjbGUgZmlsbD0iI0ZGRjIwMCIgY3g9IjExIiBjeT0iMTEiIHI9IjExIi8+DQoJPGc+DQoJCTxwYXRoIGZpbGw9IiNGMzcwMjEiIGQ9Ik0xOS43OTEsMTFoLTAuNDk3YzAsMi4yOTItMC45MjgsNC4zNjItMi40MjksNS44NjVjLTEuNTAyLDEuNTAyLTMuNTczLDIuNDI5LTUuODY0LDIuNDI5DQoJCQljLTIuMjkyLDAtNC4zNjItMC45MjgtNS44NjQtMi40MjlDMy42MzQsMTUuMzYyLDIuNzA3LDEzLjI5MiwyLjcwNiwxMWMwLTIuMjkyLDAuOTI4LTQuMzYyLDIuNDI5LTUuODY0DQoJCQlDNi42MzgsMy42MzQsOC43MDgsMi43MDcsMTEsMi43MDZjMi4yOTIsMCw0LjM2MiwwLjkyOCw1Ljg2NCwyLjQyOWMxLjUwMiwxLjUwMiwyLjQyOSwzLjU3MywyLjQyOSw1Ljg2NEwxOS43OTEsMTFoMC40OTcNCgkJCWMwLTIuNTYzLTEuMDQtNC44ODgtMi43Mi02LjU2N2MtMS42NzktMS42OC00LjAwNC0yLjcyMS02LjU2Ny0yLjcyYy0yLjU2MywwLTQuODg4LDEuMDQtNi41NjcsMi43Mg0KCQkJQzIuNzUzLDYuMTEyLDEuNzEyLDguNDM3LDEuNzEyLDExYzAsMi41NjMsMS4wNCw0Ljg4OCwyLjcyLDYuNTY3YzEuNjc5LDEuNjgsNC4wMDQsMi43MjEsNi41NjcsMi43Mg0KCQkJYzIuNTYzLDAsNC44ODgtMS4wNCw2LjU2Ny0yLjcyYzEuNjgtMS42NzksMi43MjEtNC4wMDQsMi43Mi02LjU2N0wxOS43OTEsMTF6Ii8+DQoJPC9nPg0KCTxnPg0KCQk8cGF0aCBmaWxsPSIjRjM3MDIxIiBkPSJNMTAuNTc0LDE0LjQ4NGMtMC40NjItMC4wNTctMC45MDgtMC4xNzItMS4zMzgtMC4zNDZjLTAuNDI5LTAuMTc0LTAuODIyLTAuMzk2LTEuMTc2LTAuNjY2bDAuODMxLTEuMjE1DQoJCQljMC4yOTEsMC4yMiwwLjU3NCwwLjQwMywwLjg0NywwLjU0OWMwLjI3MywwLjE0NiwwLjU3LDAuMjUsMC44ODksMC4zMTR2LTEuNjk0Yy0wLjM4My0wLjEwNy0wLjcxOS0wLjIyNC0xLjAwNy0wLjM1Mg0KCQkJYy0wLjI4OC0wLjEyOC0wLjUyNS0wLjI4LTAuNzE0LTAuNDU4Yy0wLjE4OS0wLjE3Ny0wLjMzLTAuMzg1LTAuNDI3LTAuNjIzQzguMzg0LDkuNzU2LDguMzM2LDkuNDgsOC4zMzYsOS4xNjhWOS4xNDcNCgkJCWMwLTAuMjk4LDAuMDU0LTAuNTY4LDAuMTYtMC44MWMwLjEwNy0wLjI0MSwwLjI1Ny0wLjQ1MSwwLjQ1My0wLjYyOUM5LjE0NCw3LjUzMSw5LjM4LDcuMzg3LDkuNjU4LDcuMjc3DQoJCQljMC4yNzctMC4xMSwwLjU4Mi0wLjE4MywwLjkxNi0wLjIxOFY2LjQ0aDEuMTA4VjcuMDhjMC4zODMsMC4wNTcsMC43MzYsMC4xNTEsMS4wNTksMC4yODJjMC4zMjMsMC4xMzIsMC42MywwLjMsMC45MjIsMC41MDYNCgkJCWwtMC43MTQsMS4yNDZjLTAuMjEzLTAuMTQyLTAuNDMtMC4yNjgtMC42NS0wLjM3OGMtMC4yMi0wLjExLTAuNDQ0LTAuMTk0LTAuNjcxLTAuMjUxdjEuNjA5YzAuODEsMC4yMiwxLjM5OCwwLjUwOCwxLjc2MywwLjg2Mw0KCQkJYzAuMzY2LDAuMzU1LDAuNTQ5LDAuODMxLDAuNTQ5LDEuNDI3djAuMDIxYzAsMC4yOTgtMC4wNTUsMC41NjgtMC4xNjYsMC44MWMtMC4xMSwwLjI0MS0wLjI2MywwLjQ1MS0wLjQ1OCwwLjYyOQ0KCQkJYy0wLjE5NiwwLjE3Ny0wLjQzMiwwLjMyMy0wLjcwOCwwLjQzN2MtMC4yNzcsMC4xMTQtMC41ODYsMC4xODktMC45MjcsMC4yMjR2MS4wNTVoLTEuMTA4VjE0LjQ4NHogTTEwLjYyNyw4LjM5DQoJCQljLTAuMjU2LDAuMDM2LTAuNDQyLDAuMTEyLTAuNTU5LDAuMjI5QzkuOTUxLDguNzM3LDkuODkyLDguODgsOS44OTIsOS4wNTF2MC4wMjFjMCwwLjE2MywwLjA0OSwwLjMwMywwLjE0OSwwLjQyDQoJCQljMC4xLDAuMTE3LDAuMjk1LDAuMjI5LDAuNTg2LDAuMzM2VjguMzl6IE0xMS42MjgsMTMuMTczYzAuNTA1LTAuMDc4LDAuNzU3LTAuMzA1LDAuNzU3LTAuNjgxVjEyLjQ3DQoJCQljMC0wLjE4NC0wLjA1NC0wLjMzNi0wLjE2LTAuNDUzYy0wLjEwNy0wLjExNy0wLjMwNS0wLjIyOS0wLjU5Ni0wLjMzNlYxMy4xNzN6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=';
+
+        function unbounceMarker( marker ) {
+          if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+          }
+        }
+        function bounceMarker( marker ) {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+
+
+        // business marker builder ----------------------------------
+        function buildBusinessMarker( name, imageUrl, url, lat, lng ) {
+          // build marker object with custom props for our window-launching
+          var businessMarker = new google.maps.Marker({
+              position: new google.maps.LatLng(lat, lng),
+              map: map,
+              icon: {
+                url: coinSvg,
+                size: new google.maps.Size(22, 22),
+                origin: new google.maps.Point(0,0),
+                anchor: new google.maps.Point(11, 11)
+              },
+              title: name
+          });
+          businessMarker.name = name;
+          businessMarker.imageUrl = imageUrl;
+          businessMarker.url = url;
+
+          // click to open window
+          google.maps.event.addListener(businessMarker, 'click', function() {
+            catchyWindow.close();
+            bigblueWindow.close();
+            tinkerbotWindow.close();
+            setBusinessWindow( businessMarker );
+          });
+
+          return businessMarker;
+        }
+
+        // add businesses marker ----------------------------------
+        var cityPop = buildBusinessMarker( 'City Pop', 'http://www.citypopdenver.com/image/data/LogoNew.png', 'http://citypopdenver.com/', 39.746324, -104.994428 );
+        var bovine = buildBusinessMarker( 'Bovine Metropolis', 'http://www.ila-net.org/images/Conferences/2012/Bovine_Logo_2010.jpg', 'http://www.bovinemetropolis.com/', 39.746114, -104.994794 );
+        var crave = buildBusinessMarker( 'Crave Dessert Bar & Lounge', 'http://cravedenver.com/wp/wp-content/uploads/2014/01/crave_logo.png', 'http://cravedenver.com/', 39.74471, -104.995927 );
+
+
+        // shared business window -----------------------------------
+        var businessWindow = new google.maps.InfoWindow({
+            content:  '',
+            maxWidth: mapMaxWidth
+        });
+
+        function setBusinessWindow( businessMarker ) {
+          businessWindow.setContent(
+            '<div class="map-content">'+
+            '<div>'+
+            '<h3>'+ businessMarker.name +'</h3>'+
+            '<p><a href="'+ businessMarker.url +'" target="_blank">'+ businessMarker.url.replace('http://www.','').replace('http://','') +'</a></p>'+
+            '<img width="100%" src="'+ businessMarker.imageUrl +'"/>'+
+            '</div>'+
+            '</div>'
+          );
+          businessWindow.open(map,businessMarker);
+        }
+
+
         // tinkerbot-----------------------------------------
         var tinkerbotMarker = new google.maps.Marker({
             position: new google.maps.LatLng(39.746534161476056, -104.99378979206085),
@@ -100,6 +167,9 @@
         google.maps.event.addListener(tinkerbotMarker, 'click', function() {
           catchyWindow.close();
           bigblueWindow.close();
+          businessWindow.close();
+          bounceMarker(tinkerbotMarker);
+          setTimeout(function(){ unbounceMarker(tinkerbotMarker); }, 800);
           tinkerbotWindow.open(map,tinkerbotMarker);
         });
 
@@ -132,6 +202,9 @@
         google.maps.event.addListener(catchyMarker, 'click', function() {
           tinkerbotWindow.close();
           bigblueWindow.close();
+          businessWindow.close();
+          bounceMarker(catchyMarker);
+          setTimeout(function(){ unbounceMarker(catchyMarker); }, 800);
           catchyWindow.open(map,catchyMarker);
         });
 
@@ -164,6 +237,9 @@
         google.maps.event.addListener(bigblueMarker, 'click', function() {
           catchyWindow.close();
           tinkerbotWindow.close();
+          businessWindow.close();
+          bounceMarker(bigblueMarker);
+          setTimeout(function(){ unbounceMarker(bigblueMarker); }, 800);
           bigblueWindow.open(map,bigblueMarker);
         });
 
@@ -172,6 +248,7 @@
           tinkerbotWindow.close();
           catchyWindow.close();
           bigblueWindow.close();
+          businessWindow.close();
         });
 
 
